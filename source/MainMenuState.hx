@@ -102,12 +102,12 @@ class MainMenuState extends MusicBeatState
 		freeplayButton.antialiasing = ClientPrefs.globalAntialiasing;
 		add(freeplayButton);
 
-		lmao = new FlxSprite(0,0);
-		lmao.loadGraphic(Paths.image('ottomenu/' + optionShit[curSelected]));
-		lmao.scrollFactor.set(0, 0);
-		lmao.setGraphicSize(Std.int(lmao.width * 1));
-		lmao.antialiasing = ClientPrefs.globalAntialiasing;
-		add(lmao);
+		ottomenu = new FlxSprite(0,0);
+		ottomenu.loadGraphic(Paths.image('ottomenu/' + optionShit[curSelected]));
+		ottomenu.scrollFactor.set(0, 0);
+		ottomenu.setGraphicSize(Std.int(ottomenu.width * 1));
+		ottomenu.antialiasing = ClientPrefs.globalAntialiasing;
+		add(ottomenu);
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		camFollowPos = new FlxObject(0, 0, 1, 1);

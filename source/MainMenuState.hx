@@ -84,34 +84,6 @@ class MainMenuState extends MusicBeatState
 		storybg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(storybg);
 
-		story = new FlxSprite(0,0);
-		story.loadGraphic(Paths.image('ottomenu/story' + optionShit[story_mode]));
-		story.scrollFactor.set(0, 0);
-		story.setGraphicSize(Std.int(story.width * 1));
-		story.antialiasing = ClientPrefs.globalAntialiasing;
-		add(story);
-
-		freeplay = new FlxSprite(0,0);
-		freeplay.loadGraphic(Paths.image('ottomenu/freeplay' + optionShit[freeplay]));
-		freeplay.scrollFactor.set(0, 0);
-		freeplay.setGraphicSize(Std.int(freeplay.width * 1));
-		freeplay.antialiasing = ClientPrefs.globalAntialiasing;
-		add(freeplay);
-
-		settings = new FlxSprite(0,0);
-		settings.loadGraphic(Paths.image('ottomenu/settings' + optionShit[options]));
-		settings.scrollFactor.set(0, 0);
-		settings.setGraphicSize(Std.int(settings.width * 1));
-		settings.antialiasing = ClientPrefs.globalAntialiasing;
-		add(settings);
-
-		support = new FlxSprite(0,0);
-		support.loadGraphic(Paths.image('ottomenu/support' + optionShit[credits]));
-		support.scrollFactor.set(0, 0);
-		support.setGraphicSize(Std.int(support.width * 1));
-		support.antialiasing = ClientPrefs.globalAntialiasing;
-		add(support);
-
 		var overlay:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image('ottomenu/overlay'));
 		overlay.scrollFactor.set(0, 0);
 		overlay.setGraphicSize(Std.int(overlay.width * 1));
@@ -124,25 +96,18 @@ class MainMenuState extends MusicBeatState
 		storyButton.antialiasing = ClientPrefs.globalAntialiasing;
 		add(storyButton);
 
-		storyHover = new FlxSprite(0,0);
-		storyHover.loadGraphic(Paths.image('ottomenu/storyHover' + optionShit[story_mode]));
-		storyHover.scrollFactor.set(0, 0);
-		storyHover.setGraphicSize(Std.int(storyHover.width * 1));
-		storyHover.antialiasing = ClientPrefs.globalAntialiasing;
-		add(storyHover);
-
 		var freeplayButton:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image('ottomenu/freeplayButton'));
 		freeplayButton.scrollFactor.set(0, 0);
 		freeplayButton.setGraphicSize(Std.int(freeplayButton.width * 1));
 		freeplayButton.antialiasing = ClientPrefs.globalAntialiasing;
 		add(freeplayButton);
 
-		freeplayHover = new FlxSprite(0,0);
-		freeplayHover.loadGraphic(Paths.image('ottomenu/freeplayHover' + optionShit[freeplay]));
-		freeplayHover.scrollFactor.set(0, 0);
-		freeplayHover.setGraphicSize(Std.int(freeplayHover.width * 1));
-		freeplayHover.antialiasing = ClientPrefs.globalAntialiasing;
-		add(freeplayHover);
+		ottomenu = new FlxSprite(0,0);
+		ottomenu.loadGraphic(Paths.image('ottomenu/' + optionShit[curSelected]));
+		ottomenu.scrollFactor.set(0, 0);
+		ottomenu.setGraphicSize(Std.int(ottomenu.width * 1));
+		ottomenu.antialiasing = ClientPrefs.globalAntialiasing;
+		add(ottomenu);
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		camFollowPos = new FlxObject(0, 0, 1, 1);
@@ -248,14 +213,12 @@ class MainMenuState extends MusicBeatState
 		{
 			if (controls.UI_DOWN_P || controls.UI_UP_P){
 
-				FlxTween.tween(personajes,{x: 600, alpha : 0},0.2,{ease:FlxEase.cubeIn,onComplete: function(twn:FlxTween)
+				FlxTween.tween(ottomenu,{x: 600, alpha : 0},0.2,{ease:FlxEase.cubeIn,onComplete: function(twn:FlxTween)
 					{
-						story.loadGraphic(Paths.image('ottomenu/story' + optionShit[story_mode]));
-						storyHover.loadGraphic(Paths.image('ottomenu/storyHover' + optionShit[story_mode]));
-						freeplay.loadGraphic(Paths.image('ottomenu/freeplay' + optionShit[freeplay]));
-						freeplayHover.loadGraphic(Paths.image('ottomenu/freeplayHover' + optionShit[freeplay]));
-						settings.loadGraphic(Paths.image('ottomenu/settings' + optionShit[options]));
-						support.loadGraphic(Paths.image('ottomenu/support' + optionShit[credits]));
+						ottomenu.loadGraphic(Paths.image('ottomenu/story' + optionShit[story_mode]));
+						ottomenu.loadGraphic(Paths.image('ottomenu/freeplay' + optionShit[freeplay]));
+						ottomenu.loadGraphic(Paths.image('ottomenu/settings' + optionShit[options]));
+						ottomenu.loadGraphic(Paths.image('ottomenu/support' + optionShit[credits]));
 					}
 				});
 			}

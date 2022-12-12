@@ -33,7 +33,7 @@ class MainMenuState extends MusicBeatState
 	private var camAchievement:FlxCamera;
 	
 	var optionShit:Array<String> = [
-		'story',
+		'story_mode',
 		'freeplay',
 		'options',
 		'credits'
@@ -84,12 +84,19 @@ class MainMenuState extends MusicBeatState
 		storybg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(storybg);
 
-		ottomenu = new FlxSprite(0,0);
-		ottomenu.loadGraphic(Paths.image('ottomenu/' + optionShit[curSelected]));
-		ottomenu.scrollFactor.set(0, 0);
-		ottomenu.setGraphicSize(Std.int(ottomenu.width * 1));
-		ottomenu.antialiasing = ClientPrefs.globalAntialiasing;
-		add(ottomenu);
+		story = new FlxSprite(0,0);
+		story.loadGraphic(Paths.image('ottomenu/story' + optionShit[story_mode]));
+		story.scrollFactor.set(0, 0);
+		story.setGraphicSize(Std.int(story.width * 1));
+		story.antialiasing = ClientPrefs.globalAntialiasing;
+		add(story);
+
+		freeplay = new FlxSprite(0,0);
+		freeplay.loadGraphic(Paths.image('ottomenu/freeplay' + optionShit[freeplay]));
+		freeplay.scrollFactor.set(0, 0);
+		freeplay.setGraphicSize(Std.int(freeplay.width * 1));
+		freeplay.antialiasing = ClientPrefs.globalAntialiasing;
+		add(freeplay);
 
 		settings = new FlxSprite(0,0);
 		settings.loadGraphic(Paths.image('ottomenu/settings' + optionShit[options]));
@@ -111,6 +118,19 @@ class MainMenuState extends MusicBeatState
 		overlay.antialiasing = ClientPrefs.globalAntialiasing;
 		add(overlay);
 
+		var storyButton:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image('ottomenu/storyButton'));
+		storyButton.scrollFactor.set(0, 0);
+		storyButton.setGraphicSize(Std.int(storyButton.width * 1));
+		storyButton.antialiasing = ClientPrefs.globalAntialiasing;
+		add(storyButton);
+
+		storyHover = new FlxSprite(0,0);
+		storyHover.loadGraphic(Paths.image('ottomenu/storyHover' + optionShit[story_mode]));
+		storyHover.scrollFactor.set(0, 0);
+		storyHover.setGraphicSize(Std.int(storyHover.width * 1));
+		storyHover.antialiasing = ClientPrefs.globalAntialiasing;
+		add(storyHover);
+
 		camFollow = new FlxObject(0, 0, 1, 1);
 		camFollowPos = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
@@ -128,17 +148,8 @@ class MainMenuState extends MusicBeatState
 		
 		// magenta.scrollFactor.set();
 
-		story = new FlxTypedGroup<FlxSprite>();
-		add(story);
-
-		freeplay = new FlxTypedGroup<FlxSprite>();
-		add(freeplay);
-
-		freeplay = new FlxTypedGroup<FlxSprite>();
-		add(options);
-
-		credits = new FlxTypedGroup<FlxSprite>();
-		add(credits);
+		menuItems = new FlxTypedGroup<FlxSprite>();
+		add(menuItems);
 
 		var scale:Float = 1;
 		/*if(optionShit.length > 6) {
@@ -148,7 +159,7 @@ class MainMenuState extends MusicBeatState
 		for (i in 0...optionShit.length)
 		{
 			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			var menuItem:FlxSprite = new FlxSprite(1000, (i * 140)  + offset);
+			var menuItem:FlxSprite = new FlxSprite(10000, (i * 140)  + offset);
 			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu_' + optionShit[i]);
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
@@ -226,7 +237,9 @@ class MainMenuState extends MusicBeatState
 
 				FlxTween.tween(personajes,{x: 600, alpha : 0},0.2,{ease:FlxEase.cubeIn,onComplete: function(twn:FlxTween)
 					{
-						ottomenu.loadGraphic(Paths.image('ottomenu/' + optionShit[curSelected]));
+						story.loadGraphic(Paths.image('ottomenu/story' + optionShit[story_mode]));
+						story.loadGraphic(Paths.image('ottomenu/storyHover' + optionShit[story_mode]));
+						freeplay.loadGraphic(Paths.image('ottomenu/freeplay' + optionShit[freeplay]));
 						settings.loadGraphic(Paths.image('ottomenu/settings' + optionShit[options]));
 						support.loadGraphic(Paths.image('ottomenu/support' + optionShit[credits]));
 					}
@@ -285,7 +298,7 @@ class MainMenuState extends MusicBeatState
 
 								switch (daChoice)
 								{
-									case 'story':
+									case 'story_mode':
 										MusicBeatState.switchState(new StoryMenuState());
 									case 'freeplay':
 										MusicBeatState.switchState(new FreeplayState());

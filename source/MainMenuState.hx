@@ -78,9 +78,9 @@ class MainMenuState extends MusicBeatState
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
 
-		var storybg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('ottomenu/storybg'));
-		storybg.scrollFactor.set(0, yScroll);
-		storybg.setGraphicSize(Std.int(storybg.width * 1.175));
+		var storybg:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image('ottomenu/storybg'));
+		storybg.scrollFactor.set(0, 0);
+		storybg.setGraphicSize(Std.int(storybg.width * 1));
 		storybg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(storybg);
 
@@ -105,9 +105,9 @@ class MainMenuState extends MusicBeatState
 		support.antialiasing = ClientPrefs.globalAntialiasing;
 		add(support);
 
-		var overlay:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('ottomenu/overlay'));
-		overlay.scrollFactor.set(0, yScroll);
-		overlay.setGraphicSize(Std.int(overlay.width * 1.175));
+		var overlay:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image('ottomenu/overlay'));
+		overlay.scrollFactor.set(0, 0);
+		overlay.setGraphicSize(Std.int(overlay.width * 1));
 		overlay.antialiasing = ClientPrefs.globalAntialiasing;
 		add(overlay);
 
@@ -148,72 +148,19 @@ class MainMenuState extends MusicBeatState
 		for (i in 0...optionShit.length)
 		{
 			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			var story:FlxSprite = new FlxSprite(0, (i * 140)  + offset);
-			story.scale.x = scale;
-			story.scale.y = scale;
-			story.frames = Paths.getSparrowAtlas('ottomenu/story' + optionShit[i]);
-			story.animation.addByPrefix('storyButton');
-			story.animation.addByPrefix('storyHover');
-			story.animation.play('storyButton');
-			story.ID = i;
-			story.add(story);
+			var menuItem:FlxSprite = new FlxSprite(1000, (i * 140)  + offset);
+			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu_' + optionShit[i]);
+			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
+			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
+			menuItem.animation.play('idle');
+			menuItem.ID = i;
+			menuItems.add(menuItem);
 			var scr:Float = (optionShit.length - 4) * 0.135;
 			if(optionShit.length < 6) scr = 0;
-			story.scrollFactor.set(0, scr);
-			story.antialiasing = ClientPrefs.globalAntialiasing;
+			menuItem.scrollFactor.set(0, scr);
+			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
 			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
-			story.updateHitbox();
-			
-			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			var freeplay:FlxSprite = new FlxSprite(0, (i * 140)  + offset);
-			freeplay.scale.x = scale;
-			freeplay.scale.y = scale;
-			freeplay.frames = Paths.getSparrowAtlas('ottomenu/freeplay' + optionShit[i]);
-			freeplay.animation.addByPrefix('freeplayButton');
-			freeplay.animation.addByPrefix('freeplayHover');
-			freeplay.animation.play('freeplayButton');
-			freeplay.ID = i;
-			freeplay.add(freeplay);
-			var scr:Float = (optionShit.length - 4) * 0.135;
-			if(optionShit.length < 6) scr = 0;
-			freeplay.scrollFactor.set(0, scr);
-			freeplay.antialiasing = ClientPrefs.globalAntialiasing;
-			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
-			freeplay.updateHitbox();
-			
-			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			var options:FlxSprite = new FlxSprite(0, (i * 140)  + offset);
-			options.scale.x = scale;
-			options.scale.y = scale;
-			options.frames = Paths.getSparrowAtlas('ottomenu/options' + optionShit[i]);
-			options.animation.addByPrefix('optionsButton');
-			options.animation.addByPrefix('optionsHover');
-			options.animation.play('optionsButton');
-			options.ID = i;
-			options.add(options);
-			var scr:Float = (optionShit.length - 4) * 0.135;
-			if(optionShit.length < 6) scr = 0;
-			options.scrollFactor.set(0, scr);
-			options.antialiasing = ClientPrefs.globalAntialiasing;
-			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
-			options.updateHitbox();
-			
-			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			var credits:FlxSprite = new FlxSprite(0, (i * 140)  + offset);
-			credits.scale.x = scale;
-			credits.scale.y = scale;
-			credits.frames = Paths.getSparrowAtlas('ottomenu/credits' + optionShit[i]);
-			credits.animation.addByPrefix('creditsButton');
-			credits.animation.addByPrefix('creditsHover');
-			credits.animation.play('creditsButton');
-			credits.ID = i;
-			credits.add(credits);
-			var scr:Float = (optionShit.length - 4) * 0.135;
-			if(optionShit.length < 6) scr = 0;
-			credits.scrollFactor.set(0, scr);
-			credits.antialiasing = ClientPrefs.globalAntialiasing;
-			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
-			credits.updateHitbox();
+			menuItem.updateHitbox();
 		}
 
 		FlxG.camera.follow(camFollowPos, null, 1);

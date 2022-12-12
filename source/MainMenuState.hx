@@ -135,8 +135,17 @@ class MainMenuState extends MusicBeatState
 		
 		// magenta.scrollFactor.set();
 
-		menuItems = new FlxTypedGroup<FlxSprite>();
-		add(menuItems);
+		story = new FlxTypedGroup<FlxSprite>();
+		add(story);
+
+		freeplay = new FlxTypedGroup<FlxSprite>();
+		add(freeplay);
+
+		freeplay = new FlxTypedGroup<FlxSprite>();
+		add(options);
+
+		credits = new FlxTypedGroup<FlxSprite>();
+		add(credits);
 
 		var scale:Float = 1;
 		/*if(optionShit.length > 6) {

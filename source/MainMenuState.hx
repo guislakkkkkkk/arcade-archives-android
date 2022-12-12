@@ -252,7 +252,7 @@ class MainMenuState extends MusicBeatState
 					{
 						story.loadGraphic(Paths.image('ottomenu/story' + optionShit[story_mode]));
 						storyHover.loadGraphic(Paths.image('ottomenu/storyHover' + optionShit[story_mode]));
-						freeplay.loadGraphic(Paths.image('ottomenu/freeplay' + optionShit[freeplay]));]
+						freeplay.loadGraphic(Paths.image('ottomenu/freeplay' + optionShit[freeplay]));
 						freeplayHover.loadGraphic(Paths.image('ottomenu/freeplayHover' + optionShit[freeplay]));
 						settings.loadGraphic(Paths.image('ottomenu/settings' + optionShit[options]));
 						support.loadGraphic(Paths.image('ottomenu/support' + optionShit[credits]));

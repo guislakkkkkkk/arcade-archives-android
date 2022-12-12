@@ -213,9 +213,10 @@ class MainMenuState extends MusicBeatState
 		{
 			if (controls.UI_DOWN_P || controls.UI_UP_P){
 
-				FlxTween.tween(ottomenu,{x: 600, alpha : 0}, 
+				FlxTween.tween(ottomenu,{x: 600, alpha : 0},0.2,{ease:FlxEase.cubeIn,onComplete: function(twn:FlxTween)
 					{
 						ottomenu.loadGraphic(Paths.image('ottomenu/' + optionShit[curSelected]));
+						FlxTween.tween(ottomenu,{x: 0, alpha : 1},0.2,{ease:FlxEase.cubeOut});
 					}
 				});
 			}

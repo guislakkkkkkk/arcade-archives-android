@@ -71,8 +71,8 @@ class MainMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('ottomenu/bg'));
-		bg.scrollFactor.set(0, yScroll);
-		bg.setGraphicSize(Std.int(bg.width * 1.175));
+		bg.scrollFactor.set(0, 0);
+		bg.setGraphicSize(Std.int(bg.width * 1));
 		bg.updateHitbox();
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
@@ -84,31 +84,24 @@ class MainMenuState extends MusicBeatState
 		storybg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(storybg);
 
-		story = new FlwSprite(0,0);
-		story.loadGraphic(Paths.image('ottomenu/story' + optionShit[story]));
-		story.scrollFactor.set(0, yScroll);
-		story.setGraphicSize(Std.int(story.width * 1.175));
-		story.antialiasing = ClientPrefs.globalAntialiasing;
-		add(story);
+		ottomenu = new FlxSprite(0,0);
+		ottomenu.loadGraphic(Paths.image('ottomenu/' + optionShit[curSelected]));
+		ottomenu.scrollFactor.set(0, 0);
+		ottomenu.setGraphicSize(Std.int(ottomenu.width * 1));
+		ottomenu.antialiasing = ClientPrefs.globalAntialiasing;
+		add(ottomenu);
 
-		freeplay = new FlwSprite(0,0);
-		freeplay.loadGraphic(Paths.image('ottomenu/freeplay' + optionShit[freeplay]));
-		freeplay.scrollFactor.set(0, yScroll);
-		freeplay.setGraphicSize(Std.int(freeplay.width * 1.175));
-		freeplay.antialiasing = ClientPrefs.globalAntialiasing;
-		add(freeplay);
-
-		settings = new FlwSprite(0,0);
+		settings = new FlxSprite(0,0);
 		settings.loadGraphic(Paths.image('ottomenu/settings' + optionShit[options]));
-		settings.scrollFactor.set(0, yScroll);
-		settings.setGraphicSize(Std.int(settings.width * 1.175));
+		settings.scrollFactor.set(0, 0);
+		settings.setGraphicSize(Std.int(settings.width * 1));
 		settings.antialiasing = ClientPrefs.globalAntialiasing;
 		add(settings);
-		
-		support = new FlwSprite(0,0);
+
+		support = new FlxSprite(0,0);
 		support.loadGraphic(Paths.image('ottomenu/support' + optionShit[credits]));
-		support.scrollFactor.set(0, yScroll);
-		support.setGraphicSize(Std.int(support.width * 1.175));
+		support.scrollFactor.set(0, 0);
+		support.setGraphicSize(Std.int(support.width * 1));
 		support.antialiasing = ClientPrefs.globalAntialiasing;
 		add(support);
 
@@ -282,6 +275,17 @@ class MainMenuState extends MusicBeatState
 
 		if (!selectedSomethin)
 		{
+			if (controls.UI_DOWN_P || controls.UI_UP_P){
+
+				FlxTween.tween(personajes,{x: 600, alpha : 0},0.2,{ease:FlxEase.cubeIn,onComplete: function(twn:FlxTween)
+					{
+						ottomenu.loadGraphic(Paths.image('ottomenu/' + optionShit[curSelected]));
+						settings.loadGraphic(Paths.image('ottomenu/settings' + optionShit[options]));
+						support.loadGraphic(Paths.image('ottomenu/support' + optionShit[credits]));
+					}
+				});
+			}
+
 			if (controls.UI_UP_P)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));

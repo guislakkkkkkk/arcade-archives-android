@@ -102,12 +102,12 @@ class MainMenuState extends MusicBeatState
 		freeplayButton.antialiasing = ClientPrefs.globalAntialiasing;
 		add(freeplayButton);
 
-		personajes = new FlxSprite(0,0);
-		personajes.loadGraphic(Paths.image('ottomenu/' + optionShit[curSelected]));
-		personajes.scrollFactor.set(0, 0);
-		personajes.setGraphicSize(Std.int(personajes.width * 1));
-		personajes.antialiasing = ClientPrefs.globalAntialiasing;
-		add(personajes);
+		ottomenu = new FlxSprite(0,0);
+		ottomenu.loadGraphic(Paths.image('ottomenu/' + optionShit[curSelected]));
+		ottomenu.scrollFactor.set(0, 0);
+		ottomenu.setGraphicSize(Std.int(ottomenu.width * 1));
+		ottomenu.antialiasing = ClientPrefs.globalAntialiasing;
+		add(ottomenu);
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		camFollowPos = new FlxObject(0, 0, 1, 1);
@@ -213,16 +213,12 @@ class MainMenuState extends MusicBeatState
 		{
 			if (controls.UI_DOWN_P || controls.UI_UP_P){
 
-				FlxTween.tween(personajes,{x: 600, alpha : 0},0.2,{ease:FlxEase.cubeIn,onComplete: function(twn:FlxTween)
+				FlxTween.tween(ottomenu,{x: 600, alpha : 0}, 
 					{
-						personajes.loadGraphic(Paths.image('ottomenu/story' + optionShit[story_mode]));
-						personajes.loadGraphic(Paths.image('ottomenu/freeplay' + optionShit[freeplay]));
-						personajes.loadGraphic(Paths.image('ottomenu/settings' + optionShit[options]));
-						personajes.loadGraphic(Paths.image('ottomenu/support' + optionShit[credits]));
+						ottomenu.loadGraphic(Paths.image('ottomenu/' + optionShit[curSelected]));
 					}
 				});
 			}
-
 			if (controls.UI_UP_P)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
